@@ -263,5 +263,11 @@ covidrate_vis <- covid %>%
 covidrate_vis
 ```
 
+## Section 4 
+
+Report 
+
+
+
 
 
