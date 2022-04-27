@@ -244,8 +244,24 @@ In Table \@ref(tab:covidtab).
 
  @BC64 and this is another article about COVID @bai2020presumed and I can also cite R packages as follows @ggplot2
 
+#DhruvNirmal
+```{r Southamerica, echo = FALSE, fig.align = "center", fig.width = 6, fig.cap = "COVID cases in arg and bra"}
 
-
+covidrate_vis <- covid %>%
+  mutate(date= as.Date(dateRep, format = "%d/%m/%y"),
+         cases_rates = ((1000*cases/popData2018) + 0.01),
+         dead_rates = ((1000*deaths/popData2018) +0.01)) %>%
+  dplyr::filter(date != "2020-12-31") %>%
+  #group_by(countriesAndTerritories, date) %>%
+  #summarize_at(vars(cases, deaths), cumsum) %>%
+  dplyr::filter(countriesAndTerritories %in% c("Argentina", "Brazil")) %>%
+  ggplot(aes(x = date, y = cases_rates) ) +
+  geom_line(color = "#1F9E8E")  +
+  facet_wrap(~countriesAndTerritories) +
+  theme_bw() +
+  ggtitle("Covid cases (rates")
+covidrate_vis
+```
 
 
 
